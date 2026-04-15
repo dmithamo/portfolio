@@ -10,7 +10,6 @@ import {
 
 @Component({
   selector: "app-header",
-  standalone: true,
   imports: [RouterLink, RouterLinkActive, LucideDynamicIcon],
   template: `
     <header
