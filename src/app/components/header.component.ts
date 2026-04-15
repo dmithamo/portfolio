@@ -6,6 +6,7 @@ import {
   LucideFileText,
   LucideIconInput,
   LucideNotebookPen,
+  LucideDownload,
 } from "@lucide/angular";
 
 @Component({
@@ -38,6 +39,7 @@ export class HeaderComponent {
     href: string;
     icon: LucideIconInput;
     label: string;
+    isDownloadable?: boolean;
   }> = [
     {
       href: "/projects",
@@ -50,9 +52,12 @@ export class HeaderComponent {
       label: "blog",
     },
     {
-      href: "/resume",
+      href: "/resume.pdf",
       icon: LucideFileText,
       label: "resume",
+      isDownloadable: true,
     },
   ];
+
+  readonly LucideDownload = LucideDownload;
 }
