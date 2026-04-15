@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     analog({
       content: {
-        highlighter: "shiki",
+        highlighter: "prism",
       },
       prerender: {
         routes: ["/blog"],
@@ -29,17 +29,5 @@ export default defineConfig(({ mode }) => ({
     setupFiles: ["src/test-setup.ts"],
     include: ["**/*.spec.ts"],
     reporters: ["default"],
-  },
-  server: {
-    proxy: {
-      "/.well-known": {
-        target: "http://localhost:5173", // Point to self
-        bypass: (req, res) => {
-          res.statusCode = 404;
-          res.end();
-          return false;
-        },
-      },
-    },
   },
 }));

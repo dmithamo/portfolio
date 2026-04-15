@@ -11,7 +11,9 @@ import { HeaderComponent } from "./components/header.component";
       <app-header />
 
       <main class="flex-1 p-6">
-        <router-outlet></router-outlet>
+        <section class="max-w-4xl mx-auto p-8">
+          <router-outlet></router-outlet>
+        </section>
       </main>
     </div>
   `,

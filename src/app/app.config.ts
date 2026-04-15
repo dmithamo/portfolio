@@ -13,24 +13,18 @@ import {
 } from "@angular/platform-browser";
 import { provideFileRouter, requestContextInterceptor } from "@analogjs/router";
 import { provideContent, withMarkdownRenderer } from "@analogjs/content";
-import { withShikiHighlighter } from "@analogjs/content/shiki-highlighter";
+import { withPrismHighlighter } from "@analogjs/content/prism-highlighter";
 import { withInMemoryScrolling, withRouterConfig } from "@angular/router";
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideFileRouter(
-      withRouterConfig({ onSameUrlNavigation: "reload" }),
-      withInMemoryScrolling({
-        scrollPositionRestoration: "top",
-        anchorScrolling: "enabled",
-      }),
-    ),
+    provideFileRouter(),
     provideHttpClient(
       withFetch(),
       withInterceptors([requestContextInterceptor]),
     ),
     provideClientHydration(withEventReplay()),
-    provideContent(withMarkdownRenderer(), withShikiHighlighter()),
+    provideContent(withMarkdownRenderer()),
   ],
 };
