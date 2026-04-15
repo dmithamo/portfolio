@@ -1,28 +1,16 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Component } from "@angular/core";
+import { RouterOutlet } from "@angular/router";
+import { HeaderComponent } from "./components/header.component";
 
 @Component({
-  selector: 'app-root',
-  imports: [RouterLink, RouterOutlet],
+  selector: "app-root",
+  standalone: true,
+  imports: [RouterOutlet, HeaderComponent],
   template: `
-    <nav>
-      <a routerLink="/">Home</a>
-    </nav>
-
-    <router-outlet />
-  `,
-  styles: `
-    :host {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 2rem;
-      text-align: center;
-    }
-
-    nav {
-      text-align: left;
-      padding: 0 0 2rem 0;
-    }
+    <app-header />
+    <main class="min-h-screen p-6">
+      <router-outlet></router-outlet>
+    </main>
   `,
 })
-export class App {}
+export class AppComponent {}
