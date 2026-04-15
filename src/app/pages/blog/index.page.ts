@@ -12,8 +12,8 @@ import PostAttributes from "../../post-attributes";
 
     @for (post of posts; track post.attributes.slug) {
       <a [routerLink]="['/blog/', post.attributes.slug]">
-        <h2 class="">{{ post.attributes.title }}</h2>
-        <p class="">{{ post.attributes.description }}</p>
+        <h2 class="font-bold">{{ post.attributes.title }}</h2>
+        <p class="text-xs">{{ post.attributes.description }}</p>
       </a>
     }
   `,

@@ -7,10 +7,13 @@ import { HeaderComponent } from "./components/header.component";
   standalone: true,
   imports: [RouterOutlet, HeaderComponent],
   template: `
-    <app-header />
-    <main class="min-h-screen p-6">
-      <router-outlet></router-outlet>
-    </main>
+    <div class="min-h-screen flex flex-col">
+      <app-header />
+
+      <main class="flex-1 p-6">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
   `,
 })
 export class AppComponent {}

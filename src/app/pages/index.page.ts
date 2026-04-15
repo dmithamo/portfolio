@@ -1,6 +1,7 @@
-import { RouteMeta } from '@analogjs/router';
+import { Component } from "@angular/core";
 
-export const routeMeta: RouteMeta = {
-  redirectTo: '/blog',
-  pathMatch: 'full',
-};
+@Component({
+  selector: "app-homepage",
+  template: `<h1 class="font-bold">This here is where it all starts!</h1>`,
+})
+export default class HomepageComponent {}
