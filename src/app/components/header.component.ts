@@ -13,7 +13,7 @@ import {
   standalone: true,
   imports: [RouterLink, RouterLinkActive, LucideDynamicIcon],
   template: `
-    <nav
+    <header
       class="glass-header sticky top-0 z-50 w-full px-6 transition-all duration-300 flex justify-between items-center"
       [class.py-3]="isScrolled()"
       [class.py-5]="!isScrolled()"
@@ -29,31 +29,31 @@ import {
         </div>
       </a>
 
-      <div class="flex gap-12 font-medium">
+      <nav class="flex gap-12 font-medium">
         @for (navItem of navItems; track navItem.href) {
           <a
             [routerLink]="navItem.href"
-            routerLinkActive="active-link"
+            routerLinkActive
+            #rla="routerLinkActive"
             [routerLinkActiveOptions]="{ exact: false }"
-            class="capitalize flex items-center gap-2 text-text-secondary hover:text-text-primary transition-all duration-300 py-1 group"
+            [class.text-accent]="rla.isActive"
+            [class.scale-110]="rla.isActive"
+            [class.text-text-secondary]="!rla.isActive"
+            class="capitalize flex items-center gap-2 hover:text-text-primary transition-all duration-300 py-1 group"
           >
             <svg
+              [class.text-accent]="rla.isActive"
               [lucideIcon]="navItem.icon"
               class="w-4 h-4 transition-transform group-hover:scale-110"
               strokeWidth="2"
             ></svg>
-            <span>{{ navItem.label }}</span>
+            {{ navItem.label }}
           </a>
         }
-      </div>
-    </nav>
+      </nav>
+    </header>
   `,
   styles: `
-    /* Using a dedicated class ensures the HSL accent overrides base text colors */
-    .active-link {
-      @apply text-accent scale-110 opacity-100 !important;
-    }
-
     svg {
       @apply flex items-center justify-center;
     }
