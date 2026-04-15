@@ -22,28 +22,46 @@
     <nav
         class="w-full flex justify-center items-center gap-12 py-4 bg-background/40 backdrop-blur-sm border-b border-white/5 font-medium"
     >
-        @for (navItem of navItems; track navItem.href) {
-            <a
-                [href]="navItem.href"
-                [target]="navItem.isDownloadable ? '_blank' : '_self'"
-                class="capitalize flex items-center gap-2 text-text-secondary hover:text-accent transition-all duration-300 py-1 group relative"
-            >
-                <svg
-                    [lucideIcon]="navItem.icon"
-                    class="w-4 h-4 transition-transform group-hover:scale-110"
-                    strokeWidth="2"
-                ></svg>
-
-                <span>{{ navItem.label }}</span>
-
+        <nav class="flex items-center gap-6">
+            @for (navItem of navItems; track navItem.href) {
                 @if (navItem.isDownloadable) {
-                    <svg
-                        [lucideIcon]="LucideDownload"
-                        class="w-3.5 h-3.5 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 text-accent/70"
-                        strokeWidth="2.5"
-                    ></svg>
+                    <a
+                        [href]="navItem.href"
+                        target="_blank"
+                        class="capitalize flex items-center gap-2 text-text-secondary hover:text-accent transition-all duration-300 py-1 group relative"
+                    >
+                        <svg
+                            [lucideIcon]="navItem.icon"
+                            class="w-4 h-4 transition-transform group-hover:scale-110"
+                            strokeWidth="2"
+                        ></svg>
+                        <span>{{ navItem.label }}</span>
+
+                        <svg
+                            [lucideIcon]="LucideDownload"
+                            class="w-3.5 h-3.5 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 text-accent/70"
+                            strokeWidth="2.5"
+                        ></svg>
+                    </a>
+
+                } @else {
+                    <a
+                        [routerLink]="navItem.href"
+                        routerLinkActive
+                        #rla="routerLinkActive"
+                        [class.text-accent]="rla.isActive"
+                        [class.text-text-secondary]="!rla.isActive"
+                        class="capitalize flex items-center gap-2 hover:text-accent transition-all duration-300 py-1 group"
+                    >
+                        <svg
+                            [lucideIcon]="navItem.icon"
+                            class="w-4 h-4 transition-transform group-hover:scale-110"
+                            strokeWidth="2"
+                        ></svg>
+                        <span>{{ navItem.label }}</span>
+                    </a>
                 }
-            </a>
-        }
+            }
+        </nav>
     </nav>
 </header>
