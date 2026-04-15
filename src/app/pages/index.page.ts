@@ -29,7 +29,7 @@ export interface ExperienceAttributes {
 })
 export default class HomepageComponent {
   readonly experienceFiles = injectContentFiles<ExperienceAttributes>((file) =>
-    file.filename.includes("/experience/"),
+    file.filename.includes("experience"),
   ).sort((a, b) => {
     return b.filename.localeCompare(a.filename);
   });

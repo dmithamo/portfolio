@@ -16,6 +16,14 @@ import {
     svg {
       @apply flex items-center justify-center;
     }
+
+    :host {
+      display: block;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      width: 100%;
+    }
   `,
 })
 export class HeaderComponent {

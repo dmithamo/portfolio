@@ -7,8 +7,8 @@ import { HeaderComponent } from "./components/header.component";
   standalone: true,
   imports: [RouterOutlet, HeaderComponent],
   template: `
-    <div class="min-h-screen flex flex-col">
-      <app-header />
+    <div class="min-h-screen flex flex-col relative">
+      <app-header class="sticky top-0 z-100 w-full" />
 
       <main class="flex-1 p-6">
         <section class="max-w-4xl mx-auto p-8">

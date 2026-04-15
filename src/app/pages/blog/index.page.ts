@@ -19,5 +19,7 @@ import PostAttributes from "../../post-attributes";
   `,
 })
 export default class Blog {
-  readonly posts = injectContentFiles<PostAttributes>();
+  readonly posts = injectContentFiles<PostAttributes>(
+    (file) => !file.filename.includes("experience"),
+  );
 }
