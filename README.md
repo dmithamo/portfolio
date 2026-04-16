@@ -1,59 +1,87 @@
-# Portfolio
+# Dennis Mithamo | Portfolio
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.7.
+A high-performance personal portfolio built with **Angular (v21)** using **Static Site Generation (SSG)**. This architecture ensures near-instant load times, excellent SEO, and a zero-tracker footprint.
 
-## Development server
+## 🚀 Architecture Highlights
+* **Framework:** Native Angular (Latest)
+* **Rendering:** Full SSG (Static Site Generation) via `@angular/ssr`.
+* **Interactivity:** Hybrid Hydration (Static HTML with dynamic "Islands" for UI logic).
+* **Styling:** Tailwind CSS with dynamic "Glow" effects and custom grid-system background.
+* **Icons:** Lucide Angular.
+* **Performance:** Optimized for sub-10ms TTFB (Time to First Byte) via pre-rendered assets.
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
-```
+## 🛠️ Local Development
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+To run the site in development mode (with Hot Module Replacement):
 
 ```bash
-ng generate --help
+# Install dependencies
+npm install
+
+# Start the development server
+npm run start
 ```
 
-## Building
+*Note: Dev mode uses the Angular dev server. To test the "real" performance of the pre-rendered pages, use the Production build steps below.*
 
-To build the project run:
+---
+
+## 📦 Production Build & SSG
+
+To generate the static version of the site, run:
 
 ```bash
-ng build
+npm run build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+This command triggers the Angular CLI to:
+1. Compile the application.
+2. Prerender the routes specified in `app.routes.server.ts` (e.g., `/`, `/projects`, `/blog`).
+3. Output the final static files to `dist/portfolio/browser`.
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+### Serving the Build Locally
+To verify the actual SSG output and interactivity before deploying:
 
 ```bash
-ng test
+# Serves the static browser folder
+npx serve -s dist/portfolio/browser
 ```
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## 🐳 Dockerization & Hosting
+
+The site is containerized using a multi-stage Docker build to keep the production image lightweight and optimized for the edge.
+
+### Build the Image
+```bash
+docker build -t portfolio-ssg .
+```
+
+### Run the Container
+```bash
+docker run -p 3000:3000 portfolio-ssg
+```
+The site will be available at `http://localhost:3000`.
+
+### Deployment
+This repository is configured for **Google Cloud Build**. On every push to the main branch, the `cloudbuild.yaml` triggers a build and deploys the resulting container to **Cloud Run**.
+
+---
+
+## 📈 Benchmarking
+This architecture is built for high-concurrency environments. Performance can be verified using `wrk`:
 
 ```bash
-ng e2e
+wrk -t12 -c400 -d30s http://localhost:3000
 ```
+*Because the site is served as static HTML, it handles hundreds of concurrent connections with negligible CPU overhead and zero timeouts.*
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 🛡️ Privacy & Performance
+* **Zero Cookies:** No tracking scripts or third-party cookies.
+* **Self-Hosted Fonts:** All typography is served from the same origin to eliminate external DNS lookups.
+* **Optimized LCP:** Above-the-fold content is pre-rendered to achieve an "Instant-on" user experience.

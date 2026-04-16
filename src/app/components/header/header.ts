@@ -45,6 +45,8 @@ export class Header {
 
   @HostListener("window:scroll", [])
   onWindowScroll() {
+    if (typeof window === "undefined") return;
+
     const currentScroll = window.pageYOffset;
     this.isScrolled.set(currentScroll > 20);
 
@@ -58,7 +60,7 @@ export class Header {
   }
 
   scrollToTop(event: Event) {
-    if (this.router.url === "/") {
+    if (typeof window !== "undefined" && this.router.url === "/") {
       event.preventDefault();
       window.scrollTo({
         top: 0,
