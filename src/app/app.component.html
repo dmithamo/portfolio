@@ -1,0 +1,84 @@
+<div
+    class="min-h-screen flex flex-col relative bg-background bg-grid-pattern selection:bg-accent/30 overflow-x-hidden"
+>
+    <div
+        class="fixed inset-0 overflow-hidden pointer-events-none -z-10"
+        aria-hidden="true"
+    >
+        <div
+            class="absolute top-[-10%] left-[-10%] w-125 h-125 rounded-full bg-accent/5 dark:bg-accent/2 blur-[120px]"
+        ></div>
+
+        <div
+            class="absolute bottom-[5%] right-[-5%] w-100 h-100 rounded-full bg-blue-500/5 dark:bg-blue-500/2 blur-[100px]"
+        ></div>
+    </div>
+
+    <app-header class="sticky top-0 z-50 w-full" />
+
+    <main class="flex-1 p-6 relative z-10">
+        <section class="max-w-4xl mx-auto p-8">
+            <router-outlet></router-outlet>
+        </section>
+    </main>
+    <footer
+        class="w-full py-12 px-6 mt-auto border-t border-gray-100 dark:border-white/5 bg-white/30 dark:bg-black/20 backdrop-blur-sm relative z-10"
+    >
+        <div
+            class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-text-secondary"
+        >
+            <div class="flex items-center gap-2 order-2 md:order-1">
+                <svg
+                    [lucideIcon]="LucideCopyright"
+                    class="w-4 h-4"
+                    strokeWidth="2"
+                ></svg>
+                <span
+                    >{{ currentYear }} Dennis Mithamo. Built with
+                    <a
+                        href="https://analogjs.org"
+                        target="_blank"
+                        class="text-accent font-semibold"
+                        >Analog.js</a
+                    >
+                </span>
+            </div>
+
+            <div
+                class="flex items-center gap-2 px-4 py-2 rounded-full bg-accent/5 border border-accent/10 order-1 md:order-2"
+            >
+                <svg
+                    [lucideIcon]="LucideShieldCheck"
+                    class="w-4 h-4 text-accent"
+                    strokeWidth="2"
+                ></svg>
+                <span class="text-xs font-medium tracking-tight"
+                    >Zero cookies. Zero trackers. Just code.</span
+                >
+            </div>
+
+            <div class="order-3">
+                <a
+                    href="https://github.com/dmithamo/portfolio"
+                    target="_blank"
+                    class="flex items-center gap-2 hover:text-accent transition-colors group"
+                >
+                    <svg
+                        [lucideIcon]="LucideCode"
+                        class="w-4 h-4 transition-transform group-hover:rotate-12"
+                        strokeWidth="2"
+                    ></svg>
+                    <span
+                        class="border-b border-transparent group-hover:border-accent"
+                        >View Source</span
+                    >
+                    <svg
+                        [lucideIcon]="LucideExternalLink"
+                        class="w-3 h-3 opacity-50"
+                        strokeWidth="2"
+                    ></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+</div>

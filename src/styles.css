@@ -109,3 +109,34 @@ html {
     --tw-prose-bold: var(--text-primary);
     --tw-prose-links: var(--accent);
 }
+
+@layer base {
+    .bg-grid-pattern {
+        background-size: 50px 50px;
+        background-image:
+            linear-gradient(to right, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+        transition: background-image 0.5s ease;
+    }
+
+    /* When the .dark class is present on <html> or <body> */
+    @media (prefers-color-scheme: dark) {
+        .bg-grid-pattern {
+            background-image:
+                linear-gradient(
+                    to right,
+                    rgba(255, 255, 255, 0.03) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    to bottom,
+                    rgba(255, 255, 255, 0.03) 1px,
+                    transparent 1px
+                );
+        }
+    }
+}
+
+.analog-markdown {
+    margin-inline: 0;
+}

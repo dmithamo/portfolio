@@ -8,14 +8,17 @@ import PostAttributes from "../../post-attributes";
   selector: "app-blog",
   imports: [RouterLink],
   template: `
-    <h1>Blog Archive</h1>
+    <h1 class="font-bold">Stuff I am learning</h1>
 
-    @for (post of posts; track post.attributes.slug) {
-      <a [routerLink]="['/blog/', post.attributes.slug]">
-        <h2 class="font-bold">{{ post.attributes.title }}</h2>
-        <p class="text-xs">{{ post.attributes.description }}</p>
-      </a>
-    }
+    <ul class="list-disc px-4">
+      @for (post of posts; track post.attributes.slug) {
+        <li>
+          <a [routerLink]="['/blog/', post.attributes.slug]">
+            <h2 class="font-bold text-sm">{{ post.attributes.title }}</h2>
+          </a>
+        </li>
+      }
+    </ul>
   `,
 })
 export default class Blog {

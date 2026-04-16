@@ -1,18 +1,19 @@
-import { Component } from '@angular/core';
-import { AsyncPipe } from '@angular/common';
-import { injectContent, MarkdownComponent } from '@analogjs/content';
+import { Component } from "@angular/core";
+import { AsyncPipe } from "@angular/common";
+import { injectContent, MarkdownComponent } from "@analogjs/content";
 
-import PostAttributes from '../../post-attributes';
+import PostAttributes from "../../post-attributes";
 
 @Component({
-  selector: 'app-blog-post',
+  selector: "app-blog-post",
   imports: [AsyncPipe, MarkdownComponent],
   template: `
     @if (post$ | async; as post) {
-    <article>
-      <img class="post__image" [src]="post.attributes.coverImage" />
-      <analog-markdown [content]="post.content" />
-    </article>
+      <article class="text-text-primary">
+        <h1 class="font-black text-2xl">{{ post.attributes.title }}</h1>
+        <img class="post__image" [src]="post.attributes.coverImage" />
+        <analog-markdown [content]="post.content" />
+      </article>
     }
   `,
   styles: `
@@ -22,5 +23,5 @@ import PostAttributes from '../../post-attributes';
   `,
 })
 export default class BlogPost {
-  readonly post$ = injectContent<PostAttributes>('slug');
+  readonly post$ = injectContent<PostAttributes>("slug");
 }
