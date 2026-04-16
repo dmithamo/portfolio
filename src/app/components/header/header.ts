@@ -13,7 +13,7 @@ import {
 @Component({
   selector: "app-header",
   imports: [RouterLink, RouterLinkActive, LucideDynamicIcon],
-  templateUrl: "./header.component.html",
+  templateUrl: "./header.html",
   styles: `
     svg {
       @apply flex items-center justify-center;
@@ -37,7 +37,7 @@ import {
     }
   `,
 })
-export class HeaderComponent {
+export class Header {
   isScrolled = signal(false);
   isNavHidden = signal(false);
   private lastScroll = 0;
@@ -45,6 +45,8 @@ export class HeaderComponent {
 
   @HostListener("window:scroll", [])
   onWindowScroll() {
+    if (typeof window === "undefined") return;
+
     const currentScroll = window.pageYOffset;
     this.isScrolled.set(currentScroll > 20);
 
@@ -58,7 +60,7 @@ export class HeaderComponent {
   }
 
   scrollToTop(event: Event) {
-    if (this.router.url === "/") {
+    if (typeof window !== "undefined" && this.router.url === "/") {
       event.preventDefault();
       window.scrollTo({
         top: 0,

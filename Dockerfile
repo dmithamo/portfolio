@@ -2,11 +2,9 @@
 FROM node:24-slim AS builder
 WORKDIR /app
 
-# Install dependencies first (better layer caching)
 COPY package*.json ./
 RUN npm ci
 
-# Copy source and build
 COPY . .
 RUN npm run build
 
@@ -14,13 +12,15 @@ RUN npm run build
 FROM node:24-slim
 WORKDIR /app
 
-# Only copy necessary build artifacts and production modules
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
+# Install a tiny, high-performance static server
+RUN npm install -g serve
 
-# Environment optimization
-ENV NODE_ENV=production
+# We only need the 'browser' folder for SSG
+COPY --from=builder /app/dist/portfolio/browser ./public
+
+# Cloud Run usually injects a PORT environment variable
+ENV PORT=3000
 EXPOSE 3000
 
-CMD ["node", "dist/analog/server/index.mjs"]
+# Run 'serve' in single-page-app mode (-s) to handle routing
+CMD ["sh", "-c", "serve -s public -l $PORT"]
