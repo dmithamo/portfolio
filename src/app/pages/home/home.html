@@ -1,13 +1,17 @@
-<section class="flex flex-col gap-16 md:gap-24">
-  <div class="flex flex-col gap-4">
-    <p class="text-text-secondary font-medium">Hi, I am</p>
+<section class="flex flex-col gap-25">
+  <div class="flex flex-col gap-6">
+    <p class="text-text-secondary font-bold uppercase tracking-[0.2em] text-xs">
+      Hi, I am
+    </p>
+
     <h1 class="text-5xl md:text-7xl font-black tracking-tighter leading-none">
       Dennis <span class="text-accent">Mithamo</span>
     </h1>
+
     <div class="max-w-2xl">
-      <span class="text-accent text-xl md:text-2xl font-bold block mb-2"
-        >Software Engineer</span
-      >
+      <span class="text-accent text-xl md:text-2xl font-bold block mb-4">
+        Software Engineer
+      </span>
       <p class="text-text-secondary text-lg leading-relaxed">
         I am learning the fundamentals of distributed computation at the
         <a
@@ -25,12 +29,18 @@
           class="text-accent inline-flex items-center gap-1 hover:underline decoration-accent/30 underline-offset-4 transition-all font-medium"
         >
           Sportserve
-          <svg [lucideIcon]="LucideExternalLink" class="w-4 h-4"></svg>
-        </a>
+          <svg [lucideIcon]="LucideExternalLink" class="w-4 h-4"></svg> </a
+        >. <br />
+        <br />
+        My background is in Civil Engineering; I traded structural design
+        blueprints for code, but kept the engineering discipline. My focus is on
+        building digital systems that are resilient, performant, and built to
+        last.
       </p>
     </div>
 
-    <div class="flex flex-wrap gap-8">
+    <!-- Socials -->
+    <div class="flex flex-wrap gap-8 mt-4">
       @for (social of socials; track social.url) {
       <a
         [href]="social.url"
@@ -41,19 +51,13 @@
         <svg
           viewBox="0 0 24 24"
           class="w-5 h-5 transition-all duration-300 fill-text-muted group-hover:scale-110"
-          [style.fill]="
-                            social.name === 'GitHub'
-                                ? 'currentColor'
-                                : social.color
-                        "
+          [style.fill]="social.name === 'GitHub' ? 'currentColor' : social.color"
           [class.text-text-primary]="social.name === 'GitHub'"
-          s
         >
           <path [attr.d]="social.path" />
         </svg>
-
         <span
-          class="text-sm font-medium text-text-muted transition-colors duration-300 group-hover:text-text-primary"
+          class="text-sm font-bold text-text-muted transition-colors duration-300 group-hover:text-text-primary"
         >
           {{ social.handle }}
         </span>
@@ -62,25 +66,29 @@
     </div>
   </div>
 
-  <div class="flex flex-col gap-12">
+  <!-- EXPERIENCE SECTION -->
+  <div class="flex flex-col gap-12.5">
     <h2
       class="text-xs uppercase tracking-[0.3em] text-accent font-black border-l-2 border-accent pl-4"
     >
       Experience
     </h2>
 
-    <div class="flex flex-col gap-16">
-      @for (item of EXPERIENCES; track item.website) {
+    <div class="flex flex-col gap-12.5">
+      <!-- 50px Between Articles -->
+      @for (item of EXPERIENCES; track item.company) {
       <article
-        class="group relative grid grid-cols-1 md:grid-cols-[1fr_2.5fr] gap-2 md:gap-12"
+        class="group relative grid grid-cols-1 md:grid-cols-[1fr_2.5fr] gap-4 md:gap-12"
       >
+        <!-- Left Col: Company & Date -->
         <div
           class="flex flex-row md:flex-col justify-between items-baseline md:justify-start gap-1"
         >
+          @if(item.website){
           <a
             [href]="item.website"
             target="_blank"
-            class="text-lg md:text-xl font-black text-text-primary flex items-center gap-1"
+            class="text-lg md:text-xl font-black text-text-primary flex items-center gap-1 hover:text-accent transition-colors"
           >
             {{ item.company }}
             <svg
@@ -89,8 +97,13 @@
               strokeWidth="2.5"
             ></svg>
           </a>
+          } @else {
+          <p class="text-lg md:text-xl font-black text-text-primary">
+            {{ item.company }}
+          </p>
+          }
           <div
-            class="flex items-center gap-2 text-text-muted text-[12px] md:text-sm font-medium"
+            class="flex items-center gap-2 text-text-muted text-[12px] md:text-sm font-bold"
           >
             <svg
               [lucideIcon]="LucideCalendar"
@@ -100,7 +113,10 @@
           </div>
         </div>
 
-        <div class="flex flex-col gap-3">
+        <!-- Right Col: Role Description -->
+        <div
+          class="flex flex-col gap-3 pl-6 md:pl-10 group-hover:border-accent/40 transition-colors"
+        >
           <div class="flex items-center gap-2.5">
             <div
               class="p-1 md:p-1.5 rounded-lg bg-accent/10 border border-accent/20 shrink-0"
@@ -117,14 +133,17 @@
             </span>
           </div>
 
-          <p class="text-text-secondary leading-relaxed text-sm md:text-base">
+          <p
+            class="text-text-secondary leading-relaxed text-sm md:text-base max-w-2xl"
+          >
             {{ item.description }}
           </p>
 
-          <div class="flex flex-wrap gap-1.5 md:gap-2 mt-2 md:mt-3">
+          <!-- Tools -->
+          <div class="flex flex-wrap gap-2 mt-2">
             @for (tool of item.tools; track tool) {
             <span
-              class="px-2 py-0.5 md:px-2.5 md:py-1 rounded-md bg-surface border border-text-secondary/10 text-text-secondary text-[10px] md:text-[11px] font-bold uppercase tracking-wider"
+              class="px-2.5 py-1 rounded bg-surface border border-header-border text-text-secondary text-[10px] font-bold uppercase tracking-widest shadow-sm"
             >
               {{ tool }}
             </span>
