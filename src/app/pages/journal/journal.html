@@ -1,3 +1,44 @@
-<p class="font-black">
-  There will be a log of what I am doing to stay sharp(ish) as an engineer here
-</p>
+<div class="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-12">
+  <aside class="hidden md:flex flex-col gap-8 sticky top-24 h-fit">
+    <nav class="flex flex-col gap-1">
+      @for (item of (navigation$ | async); track item.label) {
+      <div class="group">
+        <a
+          [routerLink]="['/journal', item.path]"
+          routerLinkActive="bg-accent/10 text-accent"
+          class="flex items-center justify-between py-1.5 px-2 rounded hover:bg-accent/5 cursor-pointer transition-all"
+        >
+          <div
+            class="flex items-center gap-3 text-sm font-medium text-text-secondary group-hover:text-accent"
+          >
+            <svg
+              [lucideIcon]="item.children ? LucideBookOpen : LucideHash"
+              class="w-4 h-4"
+            ></svg>
+            {{ item.label | titlecase }}
+          </div>
+        </a>
+
+        @if(item.children) {
+        <div class="ml-7 mt-1 flex flex-col border-l border-header-border">
+          @for (child of item.children; track child.label) {
+          <a
+            [routerLink]="['/journal', item.path, child.path]"
+            routerLinkActive="text-accent border-accent"
+            class="py-1 px-4 text-xs text-text-muted hover:text-accent transition-colors border-l border-transparent -ml-px"
+          >
+            {{ child.label | titlecase }}
+          </a>
+          }
+        </div>
+        }
+      </div>
+      }
+    </nav>
+  </aside>
+
+  <main class="flex flex-col">
+    <!-- Buttons removed for a cleaner, focused feed -->
+    <router-outlet></router-outlet>
+  </main>
+</div>

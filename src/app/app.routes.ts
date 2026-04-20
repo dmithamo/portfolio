@@ -1,14 +1,21 @@
 import { Routes } from "@angular/router";
+import { Home } from "./pages/home/home";
+import { Journal } from "./pages/journal/journal";
+import { JournalSection } from "./pages/journal/journal-section";
+import { JournalEntry } from "./pages/journal/journal-entry";
+import { NotFound } from "./not-found";
 
 export const routes: Routes = [
-  {
-    path: "",
-    loadComponent: () => import("./pages/home/home").then((m) => m.Home),
-  },
+  { path: "", component: Home },
   {
     path: "journal",
-    loadComponent: () =>
-      import("./pages/journal/journal").then((m) => m.Journal),
+    component: Journal,
+    children: [
+      { path: "", redirectTo: "all", pathMatch: "full" },
+      { path: "entry/:slug", component: JournalEntry },
+      { path: ":section", component: JournalSection },
+      { path: ":section/:subsection", component: JournalSection },
+    ],
   },
-  { path: "**", redirectTo: "" },
+  { path: "**", component: NotFound },
 ];
