@@ -68,7 +68,7 @@ export class Home {
       period: "2015 - 2018",
       tools: ["Structural Design", "Project Management"],
       description:
-        "Before I traded blueprints for code, I spent three years designing and supervising structural systems. This era defined my approach to software: prioritizing integrity and building for long-term stability.",
+        "My undergraduate training was in civil and construction engineering. Before I traded blueprints for code, I spent three years as a construction supervisor, structural designer, and project manager.",
     },
   ] as const;
 
