@@ -6,30 +6,25 @@ html {
   color-scheme: light dark !important;
 }
 
-/* 1. UNIVERSAL VARIABLE DEFINITIONS */
-/* We use light-dark(light_value, dark_value) to make variables theme-aware automatically */
+/* 1. UNIVERSAL VARIABLE DEFINITIONS (HSL) */
 :root {
-  --background: light-dark(hsl(240 4.8% 95.9%), hsl(240 10% 3.9%));
-  --background-rgb: light-dark(251, 251, 253, 9, 9, 11);
-  --surface: light-dark(hsl(0 0% 100%), hsl(240 5.9% 10%));
+  --background: light-dark(hsl(30 15% 94%), hsl(240 10% 3.9%));
+  --background-rgb: light-dark(240 238 233, 10 10 12);
+  --surface: light-dark(hsl(0 0% 100%), hsl(240 6% 10%));
 
-  --text-primary: light-dark(hsl(240 10% 3.9%), hsl(0 0% 100%));
-  --text-secondary: light-dark(hsl(240 6% 32%), hsl(240 5% 64.9%));
-  --text-muted: light-dark(hsl(240 4% 45%), hsl(240 5% 45%));
+  /* Slightly darkened primary text for punchier contrast */
+  --text-primary: light-dark(hsl(0 0% 5%), hsl(0 0% 100%));
+  --text-secondary: light-dark(hsl(0 0% 25%), hsl(0 0% 80%));
 
-  --accent: light-dark(hsl(142.1 76.2% 28%), hsl(142.1 70.6% 45.3%));
-  --accent-secondary: light-dark(hsl(142.1 70.6% 45.3%), hsl(142.1 76% 36%));
+  --accent: light-dark(hsl(160 84% 28%), hsl(160 84% 45%));
+  --accent-secondary: light-dark(hsl(160 84% 45%), hsl(160 84% 36%));
 
-  --success: hsl(142.1 70.6% 45.3%);
-  --code-bg: light-dark(hsl(240 5.9% 90%), hsl(240 5.9% 6%));
+  /* Refined Grid Opacity: Lowered slightly so it stays in the background */
+  --grid-minor: light-dark(hsla(160 84% 28% / 0.04), hsla(160 84% 45% / 0.04));
+  --grid-major: light-dark(hsla(160 84% 28% / 0.1), hsla(160 84% 45% / 0.12));
 
-  --header-border: light-dark(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.08));
-  --header-shadow: light-dark(
-    rgba(255, 255, 255, 0.8),
-    rgba(255, 255, 255, 0.05)
-  );
-
-  --grid-color: light-dark(rgba(0, 0, 0, 0.02), rgba(255, 255, 255, 0.02));
+  --header-border: light-dark(hsla(0 0% 0% / 0.05), hsla(0 0% 100% / 0.08));
+  --header-shadow: light-dark(hsla(0 0% 0% / 0.02), hsla(0 0% 0% / 0.3));
 }
 
 /* 2. TAILWIND THEME MAPPING */
@@ -40,11 +35,8 @@ html {
   --color-text-secondary: var(--text-secondary);
   --color-accent: var(--accent);
   --color-accent-secondary: var(--accent-secondary);
-  --color-success: var(--success);
 
-  --typography-inverted-content: var(--color-text-secondary);
-  --typography-inverted-headings: var(--color-text-primary);
-
+  /* FIXED: Mapping the weights correctly */
   --font-sans: "Fredoka", system-ui, -apple-system, sans-serif;
   --font-bold: "Fredoka-Bold", system-ui, -apple-system, sans-serif;
   --font-black: "Fredoka-Black", system-ui, -apple-system, sans-serif;
@@ -54,40 +46,38 @@ html {
 @layer base {
   html {
     scroll-behavior: smooth;
-    /* This is critical for light-dark() to work */
     color-scheme: light dark;
   }
 
   body {
     @apply bg-background text-text-primary font-sans;
-    letter-spacing: -0.011em;
+    /* READABILITY BOOST: Added a subtle halo to protect text from grid lines */
+    text-shadow: 0 0 2px var(--background);
+    letter-spacing: -0.01em;
     line-height: 1.6;
-    margin: 0;
+    -webkit-font-smoothing: antialiased;
   }
 
   .bg-grid-pattern {
-    background-size: 25px 25px;
     background-image:
-      linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
-    transition: background-image 0.5s ease;
+      linear-gradient(var(--grid-major) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-major) 1px, transparent 1px),
+      linear-gradient(var(--grid-minor) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-minor) 1px, transparent 1px);
+    background-size:
+      50px 50px,
+      50px 50px,
+      10px 10px,
+      10px 10px;
   }
 }
 
 /* 4. COMPONENTS */
 .glass-header {
-  background-color: rgba(var(--background-rgb), 0.7);
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background-color: hsla(var(--background-rgb) / 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--header-border);
-  box-shadow: inset 0 1px 0 0 var(--header-shadow);
-}
-
-.prose {
-  --tw-prose-body: var(--text-secondary);
-  --tw-prose-headings: var(--text-primary);
-  --tw-prose-bold: var(--text-primary);
-  --tw-prose-links: var(--accent);
 }
 
 /* 5. FONTS */

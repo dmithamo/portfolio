@@ -6,13 +6,9 @@ export const routes: Routes = [
     loadComponent: () => import("./pages/home/home").then((m) => m.Home),
   },
   {
-    path: "projects",
+    path: "journal",
     loadComponent: () =>
-      import("./pages/projects/projects").then((m) => m.Projects),
-  },
-  {
-    path: "blog",
-    loadComponent: () => import("./pages/blog/blog").then((m) => m.Blog),
+      import("./pages/journal/journal").then((m) => m.Journal),
   },
   { path: "**", redirectTo: "" },
 ];

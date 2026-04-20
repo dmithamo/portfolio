@@ -2,7 +2,6 @@ import { Component, HostListener, signal } from "@angular/core";
 import { inject } from "@angular/core";
 import { Router, RouterLink, RouterLinkActive } from "@angular/router";
 import {
-  LucideCodeXml,
   LucideDynamicIcon,
   LucideFileText,
   LucideIconInput,
@@ -76,14 +75,9 @@ export class Header {
     isDownloadable?: boolean;
   }> = [
     {
-      href: "/projects",
-      icon: LucideCodeXml,
-      label: "projects",
-    },
-    {
-      href: "/blog",
+      href: "/journal",
       icon: LucideNotebookPen,
-      label: "blog",
+      label: "journal",
     },
     {
       href: "/resume.pdf",

@@ -1,9 +1,9 @@
 import { Component } from "@angular/core";
 
 @Component({
-  selector: "app-blog",
+  selector: "app-journal",
   imports: [],
-  templateUrl: "./blog.html",
+  templateUrl: "./journal.html",
   styles: ``,
 })
-export class Blog {}
+export class Journal {}
