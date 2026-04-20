@@ -1,52 +1,53 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-:root,
-html {
-  color-scheme: light dark !important;
-}
-
-/* 1. UNIVERSAL VARIABLE DEFINITIONS */
 :root {
   --background: light-dark(hsl(30 15% 94%), hsl(240 10% 3.9%));
   --background-rgb: light-dark(240 238 233, 10 10 12);
-  --surface: light-dark(hsl(0 0% 100%), hsl(240 6% 10%));
-
   --text-primary: light-dark(hsl(0 0% 5%), hsl(0 0% 100%));
   --text-secondary: light-dark(hsl(0 0% 25%), hsl(0 0% 80%));
-
   --accent: light-dark(hsl(160 84% 28%), hsl(160 84% 45%));
-  --accent-secondary: light-dark(hsl(160 84% 45%), hsl(160 84% 36%));
-
   --grid-minor: light-dark(hsla(160 84% 28% / 0.02), hsla(160 84% 45% / 0.015));
   --grid-major: light-dark(hsla(160 84% 28% / 0.06), hsla(160 84% 45% / 0.04));
-
-  --header-border: light-dark(hsla(0 0% 0% / 0.05), hsla(0 0% 100% / 0.08));
   --header-shadow: light-dark(hsla(0 0% 0% / 0.02), hsla(0 0% 0% / 0.4));
 }
 
-/* 2. TAILWIND THEME MAPPING */
 @theme {
   --color-background: var(--background);
-  --color-surface: var(--surface);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-accent: var(--accent);
-  --color-accent-secondary: var(--accent-secondary);
+  --color-grid-major: var(--grid-major); /* Now you can use border-grid-major */
 
-  --font-sans: "Fredoka", system-ui, -apple-system, sans-serif;
-  --font-bold: "Fredoka-Bold", system-ui, -apple-system, sans-serif;
-  --font-black: "Fredoka-Black", system-ui, -apple-system, sans-serif;
+  --font-sans: "Fredoka", system-ui, sans-serif;
+  --font-bold: "Fredoka-Bold", system-ui, sans-serif;
+  --font-black: "Fredoka-Black", system-ui, sans-serif;
+
+  --spacing-12_5: 3.125rem;
+  --spacing-25: 6.25rem;
 }
 
-/* 3. BASE STYLES */
 @layer base {
-  html,
-  body {
+  html {
     background-color: var(--background);
+    color-scheme: light dark !important;
+  }
+  body {
     margin: 0;
-    padding: 0;
     min-height: 100vh;
+    position: relative;
+    max-width: 1440px;
+    margin: 0 auto;
+    border-left: 1px solid var(--grid-major);
+    border-right: 1px solid var(--grid-major);
+  }
+  /* The Drawing Board Grid */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
     background-image:
       linear-gradient(var(--grid-major) 1px, transparent 1px),
       linear-gradient(90deg, var(--grid-major) 1px, transparent 1px),
@@ -57,41 +58,31 @@ html {
       50px 50px,
       10px 10px,
       10px 10px;
-    background-position: top left;
-
-    /* Clean outer boundaries */
-    border-left: 1px solid var(--grid-major);
-    border-right: 1px solid var(--grid-major);
   }
 }
 
-/* 4. COMPONENTS */
-.glass-header {
-  background-color: hsla(var(--background-rgb) / 0.85);
-  backdrop-filter: blur(16px) saturate(160%);
-  -webkit-backdrop-filter: blur(16px) saturate(160%);
-  border-bottom: 1px solid var(--grid-major); /* Matches grid precision */
-  box-shadow: 0 4px 30px var(--header-shadow);
-}
-
-/* 5. FONTS - Ensure these paths are correct for your assets */
 @font-face {
   font-family: "Fredoka";
-  src: url("/fonts/fredoka-latin-400-normal.woff2") format("woff2-variations");
+  src: url("/fonts/fredoka-latin-400-normal.woff2") format("woff2");
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
   font-family: "Fredoka-Bold";
-  src: url("/fonts/fredoka-latin-600-normal.woff2") format("woff2-variations");
+  src: url("/fonts/fredoka-latin-600-normal.woff2") format("woff2");
   font-weight: 600;
   font-display: swap;
 }
 
 @font-face {
   font-family: "Fredoka-Black";
-  src: url("/fonts/fredoka-latin-700-normal.woff2") format("woff2-variations");
+  src: url("/fonts/fredoka-latin-700-normal.woff2") format("woff2");
   font-weight: 700;
   font-display: swap;
 }
+
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* ... keep the rest of your root variables and theme block below ... */
