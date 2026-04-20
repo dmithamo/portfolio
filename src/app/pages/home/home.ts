@@ -26,7 +26,6 @@ export class Home {
         "Go",
         "Python",
         "GCP",
-        "Neo4J",
         "Spanner Graph",
         "Postgresql",
       ],
