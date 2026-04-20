@@ -25,7 +25,7 @@ export class Home {
       period: "April 2024 - Present",
       tools: ["TypeScript", "Angular", "Go", "GCP", "Spanner Graph"],
       description:
-        "My teammates and I build high-performance BI dashboards where data density is the primary challenge. We focus on aggregating disparate data sources to provide actionable insights without impacting our transactional systems.",
+        "Building high-performance BI dashboards where data density is the primary challenge. My teammates and I focus on aggregating disparate data sources to provide actionable insights without impacting transactional systems.",
     },
     {
       company: "Circl Solutions",
@@ -34,7 +34,7 @@ export class Home {
       period: "Aug 2022 - Jan 2024",
       tools: ["TypeScript", "Angular", "React", "GCP"],
       description:
-        "Working with a globally distributed team, I engineered core features for a high-traffic logistics platform deployed in the LPG industry. I also authored the technical onboarding manuals that cut ramp-up time for new hires.",
+        "Engineered core features for a high-traffic logistics platform within a globally distributed team. I also authored the technical onboarding manuals that cut ramp-up time for new engineering hires.",
     },
     {
       company: "Proto Energy",
@@ -43,7 +43,7 @@ export class Home {
       period: "Nov 2020 - Jul 2022",
       tools: ["TypeScript", "React", "UI/UX", "MicroFrontends"],
       description:
-        "I led a cross-functional team to deliver internal logistics and inventory apps, and a customer-facing marketplace app. I focused on refactoring and state management, which improved our overall application performance by 25%.",
+        "Led a cross-functional team to deliver internal logistics apps and a customer-facing marketplace. Much of my focus went into refactoring and state management, which boosted application performance by 25%.",
     },
     {
       company: "Novek Technologies",
@@ -52,7 +52,7 @@ export class Home {
       period: "Oct 2019 - Oct 2020",
       tools: ["Data Visualization", "React"],
       description:
-        "I owned the UI design and development of a real-time IoT telemetry dashboard. I focused on visualizing complex data streams to help field technicians make operational decisions on the fly.",
+        "Owned the UI design and development of a real-time IoT telemetry dashboard. I focused on visualizing complex data streams to help field technicians make operational decisions on the fly.",
     },
     {
       company: "Andela",
@@ -61,7 +61,7 @@ export class Home {
       period: "Nov 2018 - Oct 2019",
       tools: ["TypeScript", "React", "Python"],
       description:
-        "I developed and shipped features for a financial coaching dashboard. I worked closely with global leads to build tools that provided users with financial clarity and actionable data.",
+        "Developed and shipped features for a financial coaching dashboard. Working closely with global leads, I helped build tools that provided users with financial clarity and actionable data.",
     },
     {
       company: "Construction Industry (Kenya)",
@@ -70,11 +70,11 @@ export class Home {
       period: "2015 - 2018",
       tools: ["Structural Design", "Project Management"],
       description:
-        "My undergraduate training was in civil and construction engineering. Before I traded blueprints for code, I spent three years as a construction supervisor, structural designer, and project manager.",
+        "My undergraduate training was in civil and construction engineering. Before trading blueprints for code, I spent three years as a construction supervisor, structural designer, and project manager.",
     },
   ] as const;
 
-  // Icon references for the template
+  // Icon references for the [lucideIcon] directive
   readonly LucideIdCardLanyard = LucideIdCardLanyard;
   readonly LucideCalendar = LucideCalendar;
   readonly LucideExternalLink = LucideExternalLink;
