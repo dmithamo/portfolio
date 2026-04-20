@@ -1,4 +1,4 @@
-<section class="flex flex-col gap-25">
+<section class="flex flex-col gap-25 pb-20">
   <!-- HERO SECTION -->
   <div class="flex flex-col gap-4">
     <div>
@@ -16,7 +16,7 @@
     </div>
 
     <div
-      class="text-text-secondary leading-relaxed text-base md:text-xl max-w-2xl flex flex-col gap-6"
+      class="text-text-secondary leading-relaxed max-w-2xl flex flex-col gap-6"
     >
       <p>
         I build high-performance digital systems. Right now, I am deepening my
@@ -30,7 +30,7 @@
           >University of Nairobi
           <svg [lucideIcon]="LucideExternalLink" class="w-4 h-4 inline"></svg>
         </a>
-        while architecting BI infrastructure at
+        while collaborating on building BI infrastructure at
         <a
           href="https://sportserve.co"
           target="_blank"
@@ -44,10 +44,13 @@
       </p>
 
       <p>
-        My background is in Civil Engineering. I traded structural design
-        blueprints for code, but I kept the engineering discipline. I focus on
-        building digital systems that are resilient, performant, and built to
-        last.
+        My background is in
+        <span class="text-text-primary font-bold">Civil Engineering</span>. In
+        2018, I changed careers, and re-invented myself (Ha!) as a computer
+        programmer - I traded structural design blueprints for UI mocks and
+        specification files. I kept the engineering rigour though. I strive to
+        continually deliver digital systems that are resilient, performant, and
+        built to last.
       </p>
     </div>
 
@@ -79,22 +82,56 @@
     </div>
   </div>
 
+  <!-- SKILLS SECTION -->
+  <div id="skills-section" class="flex flex-col gap-8 scroll-mt-24">
+    <div
+      (click)="scrollToSection('skills-section')"
+      class="flex items-center gap-3 text-accent hover:opacity-70 transition-all w-fit group cursor-pointer"
+    >
+      <svg [lucideIcon]="LucideCpu" class="w-4 h-4"></svg>
+      <h2 class="text-xs uppercase tracking-[0.3em] font-black">Skills</h2>
+    </div>
+    <div
+      class="text-text-secondary leading-relaxed max-w-3xl flex flex-col gap-4"
+    >
+      <p>
+        I am especially skilled with the
+        <span class="text-text-primary font-bold">TypeScript and Go </span>
+        programming languages, and with the
+        <span class="text-text-primary font-bold">Angular and React</span>
+        frontend frameworks.
+      </p>
+      <p>
+        To add to my capacities, I am currently learning
+        <span class="text-text-primary font-bold">Rust and Java </span>
+        programming languages. (I like Rust, and need Java in the MSc. program I
+        am taking.)
+      </p>
+      <p>
+        I can leverage modern tooling like
+        <span class="text-text-primary font-medium"
+          >LLM-based coding agents, Git, Jira, Slack, Google Workspace,
+        </span>
+        and similar collaboration tools.
+      </p>
+    </div>
+  </div>
+
   <!-- EXPERIENCE SECTION -->
   <div id="experience-section" class="flex flex-col gap-10 scroll-mt-24">
-    <button
-      (click)="scrollToExperience($event)"
+    <div
+      (click)="scrollToSection('experience-section')"
       class="flex items-center gap-3 text-accent hover:opacity-70 transition-all w-fit group cursor-pointer"
     >
       <svg [lucideIcon]="LucideBriefcaseBusiness" class="w-4 h-4"></svg>
       <h2 class="text-xs uppercase tracking-[0.3em] font-black">Experience</h2>
-    </button>
+    </div>
 
     <div class="flex flex-col gap-12.5">
       @for (item of EXPERIENCES; track item.company) {
       <article
         class="group relative grid grid-cols-1 md:grid-cols-[1fr_2.5fr] gap-4 md:gap-12"
       >
-        <!-- Left Col: Company & Date -->
         <div
           class="flex flex-wrap md:flex-col justify-between items-baseline md:justify-start gap-y-2 gap-x-4"
         >
@@ -106,7 +143,7 @@
             <a
               [href]="item.website"
               target="_blank"
-              class="hover:text-accent transition-colors"
+              class="text-accent transition-colors"
             >
               <svg
                 [lucideIcon]="LucideExternalLink"
@@ -123,7 +160,6 @@
           </div>
         </div>
 
-        <!-- Right Col: Role Description -->
         <div
           class="flex flex-col gap-3 md:pl-10 border-l border-transparent group-hover:border-accent/10 transition-all duration-500"
         >
@@ -149,7 +185,6 @@
             {{ item.description }}
           </p>
 
-          <!-- Tools -->
           <div class="flex flex-wrap gap-2 mt-2">
             @for (tool of item.tools; track tool) {
             <span

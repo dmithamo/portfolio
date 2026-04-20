@@ -6,12 +6,14 @@ import {
   LucideIdCardLanyard,
   LucideDownload,
   LucideBriefcaseBusiness,
+  LucideCpu,
 } from "@lucide/angular";
 import { TExperienceAttributes } from "../../models";
 
 @Component({
   selector: "app-home",
   templateUrl: "./home.html",
+  standalone: true,
   imports: [LucideDynamicIcon],
 })
 export class Home {
@@ -23,7 +25,7 @@ export class Home {
       period: "April 2024 - Present",
       tools: ["TypeScript", "Angular", "Go", "GCP", "Spanner Graph"],
       description:
-        "I architect high-performance BI dashboards where data density is the primary challenge. I focus on aggregating disparate data sources to provide actionable insights without impacting our transactional systems.",
+        "My teammates and I build high-performance BI dashboards where data density is the primary challenge. We focus on aggregating disparate data sources to provide actionable insights without impacting our transactional systems.",
     },
     {
       company: "Circl Solutions",
@@ -32,7 +34,7 @@ export class Home {
       period: "Aug 2022 - Jan 2024",
       tools: ["TypeScript", "Angular", "React", "GCP"],
       description:
-        "I engineered core features for a high-traffic logistics platform. I also authored the technical onboarding manuals that cut ramp-up time for new hires by 30% while working in an international team.",
+        "Working with a globally distributed team, I engineered core features for a high-traffic logistics platform deployed in the LPG industry. I also authored the technical onboarding manuals that cut ramp-up time for new hires.",
     },
     {
       company: "Proto Energy",
@@ -41,7 +43,7 @@ export class Home {
       period: "Nov 2020 - Jul 2022",
       tools: ["TypeScript", "React", "UI/UX", "MicroFrontends"],
       description:
-        "I led a cross-functional team to deliver internal logistics and inventory apps. I focused on refactoring and state management, which improved our overall application performance by 25%.",
+        "I led a cross-functional team to deliver internal logistics and inventory apps, and a customer-facing marketplace app. I focused on refactoring and state management, which improved our overall application performance by 25%.",
     },
     {
       company: "Novek Technologies",
@@ -50,7 +52,7 @@ export class Home {
       period: "Oct 2019 - Oct 2020",
       tools: ["Data Visualization", "React"],
       description:
-        "I owned the UI design and development of a real-time IoT telemetry dashboard. I spent my time visualizing complex data streams to help field technicians make operational decisions on the fly.",
+        "I owned the UI design and development of a real-time IoT telemetry dashboard. I focused on visualizing complex data streams to help field technicians make operational decisions on the fly.",
     },
     {
       company: "Andela",
@@ -72,18 +74,19 @@ export class Home {
     },
   ] as const;
 
+  // Icon references for the template
   readonly LucideIdCardLanyard = LucideIdCardLanyard;
   readonly LucideCalendar = LucideCalendar;
   readonly LucideExternalLink = LucideExternalLink;
   readonly LucideDownload = LucideDownload;
   readonly LucideBriefcaseBusiness = LucideBriefcaseBusiness;
+  readonly LucideCpu = LucideCpu;
 
   readonly socials = [
     {
       name: "GitHub",
       url: "https://github.com/dmithamo",
       handle: "@dmithamo",
-      // Removed the dark hex code to let CSS handle it
       path: "M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z",
     },
     {
@@ -95,9 +98,8 @@ export class Home {
     },
   ] as const;
 
-  scrollToExperience(event: Event) {
-    event.preventDefault();
-    const element = document.getElementById("experience-section");
+  scrollToSection(sectionId: string) {
+    const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
