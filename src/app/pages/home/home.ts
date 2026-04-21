@@ -2,19 +2,19 @@ import { Component } from "@angular/core";
 import {
   LucideCalendar,
   LucideDynamicIcon,
-  LucideExternalLink,
   LucideIdCardLanyard,
   LucideDownload,
   LucideBriefcaseBusiness,
   LucideCpu,
 } from "@lucide/angular";
 import { TExperienceAttributes } from "../../models";
+import { ExternalLink } from "../../components/external-link/external-link";
 
 @Component({
   selector: "app-home",
   templateUrl: "./home.html",
   standalone: true,
-  imports: [LucideDynamicIcon],
+  imports: [ExternalLink, LucideDynamicIcon],
 })
 export class Home {
   readonly EXPERIENCES: Array<TExperienceAttributes> = [
@@ -77,7 +77,6 @@ export class Home {
   // Icon references for the [lucideIcon] directive
   readonly LucideIdCardLanyard = LucideIdCardLanyard;
   readonly LucideCalendar = LucideCalendar;
-  readonly LucideExternalLink = LucideExternalLink;
   readonly LucideDownload = LucideDownload;
   readonly LucideBriefcaseBusiness = LucideBriefcaseBusiness;
   readonly LucideCpu = LucideCpu;

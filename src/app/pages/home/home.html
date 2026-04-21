@@ -26,32 +26,23 @@
         <a
           href="https://computerscience.uonbi.ac.ke/Distributed-Systems"
           target="_blank"
-          class="text-accent hover:underline decoration-accent/30 underline-offset-4 transition-all font-medium"
+          class="text-accent"
         >
-          University of Nairobi
-          <svg [lucideIcon]="LucideExternalLink" class="w-4 h-4 inline"></svg>
-        </a>
-        while collaborating on BI systems at
-        <a
-          href="https://sportserve.co"
-          target="_blank"
-          class="text-accent hover:underline decoration-accent/30 underline-offset-4 transition-all font-medium"
+          University of Nairobi </a
+        ><br />
+        while collaborating on high-performance BI systems at
+        <a href="https://sportserve.co" target="_blank" class="text-accent">
+          Sportserve.</a
         >
-          Sportserve
-          <svg
-            [lucideIcon]="LucideExternalLink"
-            class="w-4 h-4 inline"
-          ></svg> </a
-        >.
       </p>
 
       <p>
         My background is in
         <span class="text-text-primary font-bold">Civil Engineering</span>. In
-        2018, I pivoted to Software—trading structural design blueprints for UI
-        mocks and system specifications. I kept the engineering rigour, though.
-        I strive to deliver services that are resilient, performant, and built
-        to last.
+        2018, I pivoted to Software Engineering — trading structural design
+        blueprints for UI mocks and system specifications. I kept the
+        engineering rigour, though. I strive to deliver services that are
+        resilient, performant, and built to last.
       </p>
     </div>
 
@@ -70,6 +61,7 @@
           [style.fill]="social.name === 'GitHub' ? 'currentColor' : social.color"
           [class.text-text-primary]="social.name === 'GitHub'"
           [class.fill-text-muted]="social.name !== 'GitHub'"
+          [class.mr-1]="social.name !== 'GitHub'"
         >
           <path [attr.d]="social.path" />
         </svg>
@@ -137,20 +129,20 @@
           class="flex flex-wrap md:flex-col justify-between items-baseline md:justify-start gap-y-2 gap-x-4"
         >
           <div class="flex items-center gap-1">
-            <p class="text-lg md:text-xl font-black text-text-primary">
-              {{ item.company }}
-            </p>
             @if(item.website){
             <a
               [href]="item.website"
               target="_blank"
               class="text-accent transition-colors"
             >
-              <svg
-                [lucideIcon]="LucideExternalLink"
-                class="w-3.5 h-3.5 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
-              ></svg>
+              <p class="text-lg md:text-xl font-black text-text-primary">
+                {{ item.company }}
+              </p>
             </a>
+            }@else {
+            <p class="text-lg md:text-xl font-black text-text-primary">
+              {{ item.company }}
+            </p>
             }
           </div>
           <div

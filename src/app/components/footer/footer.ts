@@ -1,23 +1,22 @@
 import { Component } from "@angular/core";
 import {
-  LucideCode,
+  LucideCodeXml,
   LucideCopyright,
   LucideDynamicIcon,
-  LucideExternalLink,
   LucideShieldCheck,
 } from "@lucide/angular";
+import { ExternalLink } from "../external-link/external-link";
 
 @Component({
   selector: "app-footer",
-  imports: [LucideDynamicIcon],
+  imports: [LucideDynamicIcon, ExternalLink],
   templateUrl: "./footer.html",
   styles: ``,
 })
 export class Footer {
   readonly LucideCopyright = LucideCopyright;
-  readonly LucideExternalLink = LucideExternalLink;
   readonly LucideShieldCheck = LucideShieldCheck;
-  readonly LucideCode = LucideCode;
+  readonly LucideCodeXml = LucideCodeXml;
 
   readonly currentYear = new Date().getFullYear();
 }
