@@ -14,12 +14,10 @@ import {
   imports: [RouterLink, RouterLinkActive, LucideDynamicIcon],
   template: `
     <header
-      class="w-full translate-z-0 transform duration-400 ease-out bg-background/45 backdrop-blur-md z-50 top-0 sticky"
-      [class.-translate-y-full]="isNavHidden()"
+      class="w-full top-0 sticky z-50 transition-all duration-500 ease-in-out bg-background/45 backdrop-blur-md"
+      [class.nav-hidden]="isNavHidden()"
     >
-      <div
-        class="w-full flex justify-center py-4 border-b border-grid-major relative z-20 shadow-[0_4px_30px_var(--header-shadow)]"
-      >
+      <div class="w-full flex justify-center py-4 border-b border-grid-major">
         <a
           (click)="scrollToTop($event)"
           routerLink="/"
@@ -82,31 +80,50 @@ import {
     }
 
     :host {
+      display: block;
+      position: sticky;
+      top: 0;
+      z-index: 50;
     }
 
     header {
-      will-change: transform;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .nav-hidden {
+      transform: translateY(-100%);
     }
   `,
 })
 export class Header {
-  isScrolled = signal(false);
-  isNavHidden = signal(false);
-  private lastScroll = 0;
   private router = inject(Router);
+  isNavHidden = signal(false);
+  private lastScroll = 0; // Standard variable is fine here unless you need to bind it
+  private threshold = 10; // Minimum scroll delta before hiding/showing
 
   @HostListener("window:scroll", [])
   onWindowScroll() {
-    const currentScroll = window.pageYOffset;
-    const delta = currentScroll - this.lastScroll;
+    const currentScroll =
+      window.pageYOffset || document.documentElement.scrollTop;
 
-    if (Math.abs(delta) < 5) return;
-
+    // 1. Always show at the very top
     if (currentScroll <= 0) {
       this.isNavHidden.set(false);
-    } else if (delta > 0 && currentScroll > 100) {
+      this.lastScroll = currentScroll;
+      return;
+    }
+
+    // 2. Check if we've scrolled enough to bother changing state
+    if (Math.abs(currentScroll - this.lastScroll) < this.threshold) {
+      return;
+    }
+
+    // 3. Logic: Hide if scrolling down, Show if scrolling up
+    if (currentScroll > this.lastScroll && currentScroll > 100) {
+      // Scrolling Down
       this.isNavHidden.set(true);
-    } else if (delta < 0) {
+    } else {
+      // Scrolling Up
       this.isNavHidden.set(false);
     }
 

@@ -81,8 +81,3 @@
   font-weight: 700;
   font-display: swap;
 }
-
-@import "tailwindcss";
-@plugin "@tailwindcss/typography";
-
-/* ... keep the rest of your root variables and theme block below ... */
