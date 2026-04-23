@@ -14,7 +14,7 @@ import {
   imports: [RouterLink, RouterLinkActive, LucideDynamicIcon],
   template: `
     <header
-      class="w-full transition-transform duration-500 bg-background/45 backdrop-blur-md"
+      class="w-full translate-z-0 transform duration-400 ease-out bg-background/45 backdrop-blur-md z-50 top-0 sticky"
       [class.-translate-y-full]="isNavHidden()"
     >
       <div
@@ -82,12 +82,6 @@ import {
     }
 
     :host {
-      display: block;
-      position: sticky;
-      top: 0;
-      left: 0;
-      z-index: 100;
-      width: 100%;
     }
 
     header {
@@ -103,14 +97,16 @@ export class Header {
 
   @HostListener("window:scroll", [])
   onWindowScroll() {
-    if (typeof window === "undefined") return;
-
     const currentScroll = window.pageYOffset;
-    this.isScrolled.set(currentScroll > 60);
+    const delta = currentScroll - this.lastScroll;
 
-    if (currentScroll > this.lastScroll && currentScroll > 100) {
+    if (Math.abs(delta) < 5) return;
+
+    if (currentScroll <= 0) {
+      this.isNavHidden.set(false);
+    } else if (delta > 0 && currentScroll > 100) {
       this.isNavHidden.set(true);
-    } else {
+    } else if (delta < 0) {
       this.isNavHidden.set(false);
     }
 
