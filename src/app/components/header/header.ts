@@ -47,7 +47,7 @@ export class Header {
     if (typeof window === "undefined") return;
 
     const currentScroll = window.pageYOffset;
-    this.isScrolled.set(currentScroll > 20);
+    this.isScrolled.set(currentScroll > 60);
 
     if (currentScroll > this.lastScroll && currentScroll > 100) {
       this.isNavHidden.set(true);
