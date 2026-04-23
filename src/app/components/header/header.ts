@@ -12,7 +12,70 @@ import {
 @Component({
   selector: "app-header",
   imports: [RouterLink, RouterLinkActive, LucideDynamicIcon],
-  templateUrl: "./header.html",
+  template: `
+    <header
+      class="w-full transition-transform duration-500 bg-background/45 backdrop-blur-md"
+      [class.-translate-y-full]="isNavHidden()"
+    >
+      <div
+        class="w-full flex justify-center py-4 border-b border-grid-major relative z-20 shadow-[0_4px_30px_var(--header-shadow)]"
+      >
+        <a
+          (click)="scrollToTop($event)"
+          routerLink="/"
+          class="group flex items-center select-none tracking-tighter"
+        >
+          <div class="text-2xl font-black text-accent">
+            D<span class="text-text-primary ml-1 font-bold">Mithamo</span>.
+          </div>
+        </a>
+      </div>
+
+      <nav
+        class="w-full flex justify-center items-center gap-12 py-4 border-b border-grid-major font-medium relative z-10"
+      >
+        <div class="flex items-center gap-6">
+          @for (navItem of navItems; track navItem.href) {
+            @if (navItem.isDownloadable) {
+              <a
+                [href]="navItem.href"
+                target="_blank"
+                class="capitalize flex items-center gap-2 text-text-secondary hover:text-accent transition-all duration-300 py-1 group relative"
+              >
+                <svg
+                  [lucideIcon]="navItem.icon"
+                  class="w-4 h-4 transition-transform group-hover:scale-110"
+                  strokeWidth="2"
+                ></svg>
+                <span>{{ navItem.label }}</span>
+                <svg
+                  [lucideIcon]="LucideDownload"
+                  class="w-3.5 h-3.5 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 text-accent/70"
+                  strokeWidth="2.5"
+                ></svg>
+              </a>
+            } @else {
+              <a
+                [routerLink]="navItem.href"
+                routerLinkActive
+                #rla="routerLinkActive"
+                [class.text-accent]="rla.isActive"
+                [class.text-text-secondary]="!rla.isActive"
+                class="capitalize flex items-center gap-2 hover:text-accent transition-all duration-300 py-1 group"
+              >
+                <svg
+                  [lucideIcon]="navItem.icon"
+                  class="w-4 h-4 transition-transform group-hover:scale-110"
+                  strokeWidth="2"
+                ></svg>
+                <span>{{ navItem.label }}</span>
+              </a>
+            }
+          }
+        </div>
+      </nav>
+    </header>
+  `,
   styles: `
     svg {
       @apply flex items-center justify-center;
@@ -22,17 +85,13 @@ import {
       display: block;
       position: sticky;
       top: 0;
+      left: 0;
       z-index: 100;
       width: 100%;
     }
 
-    .brand-tier {
-      z-index: 20;
-    }
-
-    nav {
-      z-index: 10;
-      transform-origin: top;
+    header {
+      will-change: transform;
     }
   `,
 })
