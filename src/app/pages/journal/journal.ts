@@ -24,7 +24,7 @@ import { LucideArrowLeft, LucideDynamicIcon, LucideWrench } from "@lucide/angula
         </h2>
 
         <p class="text-text-muted leading-relaxed max-w-lg mx-auto">
-        Working on this, if slowly, because work is demanding my full attention. Check back soonish.
+        Working on this, if slowly, because work and school are demanding my full attention. Check back soonish.
         </p>
 
         <div
