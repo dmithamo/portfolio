@@ -1,0 +1,101 @@
+---
+import { ArrowLeft, BookOpen, Compass } from "@lucide/astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="404 — Map is not the Territory | Dennis Mithamo"
+  description="This page doesn't exist in the current map. Find your way back to Dennis Mithamo's portfolio."
+>
+  <section
+    class="min-h-[65vh] flex items-center justify-center py-12"
+    aria-labelledby="error-title"
+  >
+    <div class="w-full max-w-2xl">
+      <div class="relative overflow-hidden rounded-2xl border border-grid-major bg-background/80 backdrop-blur-md">
+        <!-- Technical drawing grid -->
+        <div
+          aria-hidden="true"
+          class="pointer-events-none absolute inset-0 opacity-40"
+          style="background-image: linear-gradient(var(--grid-major) 1px, transparent 1px), linear-gradient(90deg, var(--grid-major) 1px, transparent 1px); background-size: 24px 24px;"
+        ></div>
+
+        <div class="relative z-10 p-7 sm:p-10">
+          <div class="flex items-center justify-between gap-4 mb-12">
+            <div class="inline-flex items-center gap-2 rounded-full border border-grid-major bg-background/80 px-3 py-1.5 font-mono text-xs text-text-secondary">
+              <span
+                class="inline-block h-2 w-2 rounded-full bg-accent"
+                aria-hidden="true"
+              ></span>
+              HTTP 404
+            </div>
+
+            <span class="font-mono text-xs tracking-widest text-text-muted">
+              LOCATION UNKNOWN
+            </span>
+          </div>
+
+          <div class="mb-8">
+            <div
+              class="flex items-center gap-3 text-accent mb-5"
+              aria-hidden="true"
+            >
+              <Compass size={28} stroke-width={1.5} />
+              <span class="font-mono text-xs uppercase tracking-[0.2em]">
+                Navigation error
+              </span>
+            </div>
+
+            <p
+              class="font-mono text-7xl sm:text-8xl font-bold tracking-tighter text-accent/20 leading-none mb-5"
+              aria-hidden="true"
+            >
+              404
+            </p>
+
+            <h1
+              id="error-title"
+              class="text-3xl sm:text-4xl font-bold tracking-tight text-text-primary mb-5"
+            >
+              Map is not the Territory.
+            </h1>
+
+            <p class="max-w-lg text-base sm:text-lg leading-relaxed text-text-secondary">
+              The coordinates you've requested don't correspond to a known entry
+              in this knowledge base. Perhaps the page moved, was removed, or
+              never existed in this branch of reality.
+            </p>
+          </div>
+
+          <div class="border-t border-grid-major pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+            <p class="font-mono text-xs text-text-muted">
+              <span class="text-accent">$</span> return_to_known_space()
+            </p>
+
+            <div class="flex flex-wrap items-center gap-3">
+              <a
+                href="/"
+                class="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-4 py-2.5 font-semibold text-background transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+              >
+                <ArrowLeft size={16} stroke-width={2} />
+                Back home
+              </a>
+
+              <a
+                href="/journal"
+                class="inline-flex items-center justify-center gap-2 rounded-lg border border-grid-major bg-background/70 px-4 py-2.5 font-medium text-text-secondary transition-colors hover:border-accent/40 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+              >
+                <BookOpen size={16} stroke-width={2} />
+                Journal
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="mt-5 text-center text-xs text-text-muted">
+        Not every path leads somewhere. That's part of the map.
+      </p>
+    </div>
+  </section>
+</Layout>

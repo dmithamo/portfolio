@@ -1,0 +1,43 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Dennis Mithamo — Software Engineer",
+  description = "Dennis Mithamo — Software Engineer",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0a0a0d" />
+
+    <link rel="icon" href="/favicon.ico" />
+
+    <title>{title}</title>
+  </head>
+
+  <body>
+    <div class="min-h-screen flex flex-col relative selection:bg-accent/30 overflow-x-clip">
+      <Header />
+
+      <main class="flex-1 p-6 relative z-10">
+        <section class="max-w-4xl mx-auto p-8">
+          <slot />
+        </section>
+      </main>
+
+      <Footer />
+    </div>
+  </body>
+</html>

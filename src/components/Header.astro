@@ -1,0 +1,116 @@
+---
+import { Download, FileText, NotebookPen } from "@lucide/astro";
+
+const navItems = [
+  {
+    href: "/journal",
+    label: "journal",
+    icon: NotebookPen,
+  },
+  {
+    href: "/resume.pdf",
+    label: "resume",
+    icon: FileText,
+    downloadable: true,
+  },
+];
+---
+
+<header
+  id="site-header"
+  class="w-full top-0 sticky z-50 transition-all duration-500 ease-in-out bg-background/45 backdrop-blur-md"
+>
+  <div class="w-full flex justify-center py-4 border-b border-grid-major">
+    <a
+      href="/"
+      class="group flex items-center select-none tracking-tighter"
+      aria-label="Dennis Mithamo — Home"
+    >
+      <div class="text-2xl font-black text-accent">
+        D<span class="text-text-primary ml-1 font-bold">Mithamo</span>.
+      </div>
+    </a>
+  </div>
+
+  <nav
+    class="w-full flex justify-center items-center gap-12 py-4 border-b border-grid-major font-medium relative z-10"
+    aria-label="Main navigation"
+  >
+    <div class="flex items-center gap-6">
+      {navItems.map(({ href, label, icon: Icon, downloadable }) => (
+        <a
+          href={href}
+          {...(downloadable
+            ? {
+                target: "_blank",
+                rel: "noopener noreferrer",
+              }
+            : {})}
+          class="capitalize flex items-center gap-2 text-text-secondary hover:text-accent transition-all duration-300 py-1 group"
+        >
+          <Icon
+            size={16}
+            stroke-width={2}
+            class="transition-transform group-hover:scale-110"
+          />
+
+          <span>{label}</span>
+
+          {downloadable && (
+            <Download
+              size={14}
+              stroke-width={2.5}
+              class="opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 text-accent/70"
+            />
+          )}
+        </a>
+      ))}
+    </div>
+  </nav>
+</header>
+
+<script>
+  const header = document.querySelector("#site-header");
+
+  if (header) {
+    let lastScroll = 0;
+    const threshold = 10;
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        const currentScroll =
+          window.pageYOffset || document.documentElement.scrollTop;
+
+        if (currentScroll <= 0) {
+          header.classList.remove("nav-hidden");
+          lastScroll = currentScroll;
+          return;
+        }
+
+        if (Math.abs(currentScroll - lastScroll) < threshold) {
+          return;
+        }
+
+        if (currentScroll > lastScroll && currentScroll > 100) {
+          header.classList.add("nav-hidden");
+        } else {
+          header.classList.remove("nav-hidden");
+        }
+
+        lastScroll = currentScroll;
+      },
+      { passive: true },
+    );
+  }
+</script>
+
+<style>
+  header {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .nav-hidden {
+    transform: translateY(-100%);
+  }
+</style>

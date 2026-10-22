@@ -1,0 +1,157 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@font-face {
+  font-family: "Fredoka";
+  src: url("/fonts/fredoka-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fredoka";
+  src: url("/fonts/fredoka-latin-600-normal.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fredoka";
+  src: url("/fonts/fredoka-latin-700-normal.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --background: light-dark(hsl(30 15% 94%), hsl(240 10% 3.9%));
+
+  --background-rgb: light-dark(240, 238, 234, 10, 10, 12);
+
+  --text-primary: light-dark(hsl(240 10% 10%), hsl(0 0% 98%));
+
+  --text-secondary: light-dark(hsl(240 5% 35%), hsl(240 5% 65%));
+
+  --text-muted: light-dark(hsl(240 4% 45%), hsl(240 4% 45%));
+
+  --accent: light-dark(hsl(160 84% 32%), hsl(160 84% 45%));
+
+  /* Softer grid: the background should support the content, not compete with it. */
+  --grid-minor: light-dark(
+    hsla(240 5% 20% / 0.025),
+    hsla(240 5% 80% / 0.012)
+  );
+
+  --grid-major: light-dark(
+    hsla(240 5% 20% / 0.04),
+    hsla(240 5% 80% / 0.025)
+  );
+
+  --header-shadow: light-dark(hsla(240 5% 10% / 0.08), hsla(240 5% 0% / 0.35));
+
+  --surface: light-dark(hsl(30 15% 97%), hsl(240 10% 6%));
+
+  /* Subtle surfaces for technology tags. */
+  --tag-background: light-dark(
+    hsl(30 15% 91% / 0.65),
+    hsl(240 8% 10% / 0.8)
+  );
+
+  --tag-border: light-dark(
+    hsla(240 5% 35% / 0.16),
+    hsla(240 5% 80% / 0.12)
+  );
+
+  --experience-divider: light-dark(
+    hsla(240 5% 35% / 0.12),
+    hsla(240 5% 80% / 0.09)
+  );
+
+  --header-border: var(--grid-major);
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-grid-minor: var(--grid-minor);
+  --color-grid-major: var(--grid-major);
+  --color-header-shadow: var(--header-shadow);
+  --color-surface: var(--surface);
+  --color-header-border: var(--header-border);
+
+  --color-tag-background: var(--tag-background);
+  --color-tag-border: var(--tag-border);
+  --color-experience-divider: var(--experience-divider);
+
+  --font-sans: "Fredoka", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  max-width: 1440px;
+  min-height: 100vh;
+  margin-inline: auto;
+
+  color: var(--text-primary);
+  background-color: var(--background);
+
+  font-family: "Fredoka", sans-serif;
+  font-weight: 400;
+
+  border-left: 1px solid var(--grid-major);
+  border-right: 1px solid var(--grid-major);
+
+  background-image:
+    linear-gradient(var(--grid-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-major) 1px, transparent 1px),
+    linear-gradient(var(--grid-minor) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-minor) 1px, transparent 1px);
+
+  background-size:
+    50px 50px,
+    50px 50px,
+    10px 10px,
+    10px 10px;
+
+  background-position:
+    center center,
+    center center,
+    center center,
+    center center;
+}
+
+::selection {
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+a {
+  text-decoration: none;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img,
+svg {
+  display: block;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+```

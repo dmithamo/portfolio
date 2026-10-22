@@ -1,0 +1,65 @@
+---
+import { Briefcase, Calendar } from "@lucide/astro";
+import { experiences } from "../data/experience";
+---
+
+<div class="flex flex-col">
+  {experiences.map((item) => (
+    <article class="mb-5 grid grid-cols-1 gap-y-2 pb-2 sm:mb-6 sm:grid-cols-[190px_minmax(0,1fr)] sm:gap-x-8 sm:gap-y-0">
+      <div class="flex items-start gap-[9px] pt-[3px] text-[12px] leading-relaxed text-text-secondary sm:text-[13px]">
+        <Calendar
+          size={14}
+          stroke-width={1.8}
+          class="mt-[3px] shrink-0 opacity-65"
+        />
+        <span>{item.period}</span>
+      </div>
+
+      <div class="min-w-0">
+        <div class="flex items-start gap-[11px]">
+          <Briefcase
+            size={17}
+            stroke-width={1.8}
+            class="mt-[3px] shrink-0 text-accent"
+          />
+
+          <div class="min-w-0 flex-1">
+            <h3 class="m-0 text-base leading-snug font-bold text-text-primary">
+              {item.role}
+            </h3>
+
+            {item.companyUrl ? (
+              <a
+                class="mt-0.5 inline-block text-[15px] font-semibold text-accent underline-offset-4 hover:underline"
+                href={item.companyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {item.company}
+              </a>
+            ) : (
+              <p class="mt-0.5 text-[15px] font-semibold text-accent">
+                {item.company}
+              </p>
+            )}
+          </div>
+        </div>
+
+        <p class="mt-[9px] mb-3 ml-7 max-w-[620px] text-sm leading-[1.75] text-text-secondary">
+          {item.description}
+        </p>
+
+        <ul
+          class="ml-7 flex list-none flex-wrap gap-1.5 p-0"
+          aria-label="Technologies used"
+        >
+          {item.technologies.map((technology) => (
+            <li class="rounded-md border border-tag-border bg-tag-background px-2 py-[3px] text-[11px] leading-relaxed text-text-secondary transition-colors duration-150 hover:border-accent/40 hover:bg-accent/5 motion-reduce:transition-none">
+              {technology}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </article>
+  ))}
+</div>

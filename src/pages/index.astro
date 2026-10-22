@@ -1,0 +1,113 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SocialLinks from "../components/SocialLinks.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import Experience from "../components/Experience.astro";
+---
+
+<Layout
+  title="Dennis Mithamo | Software Engineer"
+  description="I'm Dennis Mithamo, a software engineer building large-scale BI systems at Sportserve. With a background in Civil Engineering, I'm interested in the intersection of engineering, software, and distributed computation."
+>
+  <div class="flex flex-col gap-14 md:gap-18">
+    <!-- Introduction -->
+    <section class="pt-8 md:pt-14">
+      <p class="mb-2 text-lg text-text-secondary">Hi, I am</p>
+
+      <h1 class="mb-4 text-5xl leading-none font-black tracking-tighter md:text-7xl">
+        <span class="text-accent">Dennis</span>
+        <span class="text-text-primary"> Mithamo</span>
+      </h1>
+
+      <p class="mb-8 text-2xl font-semibold tracking-tight text-text-secondary md:text-3xl">
+        Software Engineer
+      </p>
+
+      <div class="max-w-2xl space-y-5 leading-relaxed text-text-secondary">
+        <p>
+          I currently work as a fullstack engineer at{" "}
+          <a
+            href="https://sportserve.co"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-text-primary underline decoration-accent/40 underline-offset-4 transition-colors hover:text-accent"
+          >
+            Sportserve
+          </a>
+          , building large-scale business intelligence systems.
+        </p>
+
+        <p>
+          Alongside work, I'm pursuing an MSc. in Computer Science at the{" "}
+          <a
+            href="https://computerscience.uonbi.ac.ke"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-text-primary underline decoration-accent/40 underline-offset-4 transition-colors hover:text-accent"
+          >
+            University of Nairobi
+          </a>
+          . I'm particularly interested in deepening my understanding of
+          distributed computation.
+        </p>
+
+        <p>
+          I started out in Civil Engineering before making the switch to
+          software in 2018. I'd like to bring those two worlds together someday,
+          combining the rigour of traditional engineering with the possibilities
+          of modern software and technology.
+        </p>
+      </div>
+
+      <div class="mt-7">
+        <SocialLinks />
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section>
+      <SectionHeading id="skills" title="Skills" icon="cpu" />
+
+      <div class="max-w-3xl space-y-5 leading-relaxed text-text-secondary">
+        <p>
+          My strongest languages are{" "}
+          <strong class="font-semibold text-text-primary">
+            TypeScript and Go
+          </strong>
+          . I've spent plenty of time building web applications with{" "}
+          <strong class="font-semibold text-text-primary">
+            Angular and React
+          </strong>
+          , from responsive interfaces to data-heavy dashboards.
+        </p>
+
+        <p>
+          My work extends to the backend, too. I've built high-capacity services
+          alongside the interfaces that bring their data to life, using{" "}
+          <strong class="font-semibold text-text-primary">Python and Go</strong>{" "}
+          and working with databases such as{" "}
+          <strong class="font-semibold text-text-primary">
+            PostgreSQL (Cloud SQL) and Neo4j
+          </strong>
+          .
+        </p>
+
+        <p>
+          I'm also comfortable with the tools that help a team collaborate, keep
+          track of work, and maintain a steady development pace:{" "}
+          <strong class="font-semibold text-text-primary">
+            Git, GitHub, GitLab, Confluence, Jira, and Slack
+          </strong>
+          .
+        </p>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section>
+      <SectionHeading id="experience" title="Experience" icon="briefcase" />
+
+      <Experience />
+    </section>
+  </div>
+</Layout>

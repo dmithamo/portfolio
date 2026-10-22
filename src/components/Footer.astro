@@ -1,0 +1,39 @@
+---
+import { CodeXml, Copyright, ShieldCheck } from "@lucide/astro";
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="w-full mt-auto relative z-20 py-12 px-6 bg-background/80 backdrop-blur-xl backdrop-saturate-150 border-t border-grid-major">
+  <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 items-center gap-6 text-sm text-text-secondary">
+    <div class="flex items-center gap-2 justify-center md:justify-start order-2 md:order-1">
+      <span class="flex items-center gap-1 font-medium">
+        <Copyright size={16} class="text-accent" />
+        {currentYear} Dennis Mithamo.
+      </span>
+    </div>
+
+    <div class="flex justify-center order-1 md:order-2">
+      <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-accent/5 border border-accent/10 whitespace-nowrap transition-all duration-300 hover:bg-accent/10 hover:border-accent/30 hover:-translate-y-0.5 shadow-sm">
+        <ShieldCheck size={16} class="text-accent" />
+
+        <span class="text-[10px] font-black uppercase tracking-widest">
+          Zero cookies. Zero trackers.
+        </span>
+      </div>
+    </div>
+
+    <div class="flex justify-center md:justify-end order-3">
+      <a
+        href="https://github.com/dmithamo/portfolio"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-2 hover:text-accent group transition-colors"
+      >
+        <CodeXml size={16} class="text-accent" />
+
+        <span class="font-bold">View Source</span>
+      </a>
+    </div>
+  </div>
+</footer>

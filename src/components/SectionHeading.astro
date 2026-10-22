@@ -1,0 +1,29 @@
+---
+import { Briefcase, Cpu } from "@lucide/astro";
+
+interface Props {
+  title: string;
+  id: string;
+  icon: "cpu" | "briefcase";
+}
+
+const { title, id, icon } = Astro.props;
+---
+
+<a
+  href={`#${id}`}
+  id={id}
+  class="group inline-flex items-center gap-3 mb-6 scroll-mt-32"
+>
+  <div class="flex items-center justify-center w-8 h-8 rounded-lg border border-grid-major bg-background/60 text-accent transition-all duration-300 group-hover:border-accent/40 group-hover:bg-accent/5">
+    {icon === "cpu" ? (
+      <Cpu size={16} stroke-width={2} />
+    ) : (
+      <Briefcase size={16} stroke-width={2} />
+    )}
+  </div>
+
+  <h2 class="text-xl font-bold tracking-tight text-text-primary group-hover:text-accent transition-colors">
+    {title}
+  </h2>
+</a>
